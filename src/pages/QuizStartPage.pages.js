@@ -1,6 +1,6 @@
 import React from 'react'
 import QuizPageBack from '../component/QuizPageBack.Component'
-import Grid from '../component/Grid.Component'
+import { Outlet } from 'react-router-dom'
 
 function QuizStartPage() {
   return (
@@ -55,11 +55,9 @@ function QuizStartPage() {
           </div>
         </div>
       </header>
-
-
 {/* main page body */}
 
-      <Grid/>
+      <Outlet/>
 
     </div>
   )

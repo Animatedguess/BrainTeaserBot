@@ -2,7 +2,6 @@ import React from 'react'
 import LandingCom from '../component/LandingCom'
 import NavBar from '../component/NavBar'
 import LandBack from '../component/LandBack'
-import { Outlet } from 'react-router-dom'
 
 function LandingPage() {
   return (

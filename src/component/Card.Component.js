@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Card(promps) {
     return (
-        <div className='bg-quiz-color rounded-lg shadow-lg'>
-            <a href={`/${promps.name}`} className="w-full max-w-xs overflow-hidden" tabIndex="0">
+        <Link to={promps.name}>
+            <div className='bg-quiz-color rounded-lg shadow-lg'>
+            <div className="w-full max-w-xs overflow-hidden" tabIndex="0">
                 <div className="flex justify-center items-center">
                     <img
                         className="object-cover w-56 h-56 shadow-2xl rounded-lg"
@@ -17,9 +19,9 @@ function Card(promps) {
                         {promps.name}
                     </p>
                 </div>
-            </a>
+            </div>
         </div>
-
+        </Link>
     )
 }
 

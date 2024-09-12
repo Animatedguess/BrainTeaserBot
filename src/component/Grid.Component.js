@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Card from './Card.Component'
-import { category } from '../Data/categoryData'
+import { categories } from '../Data/categoryData'
+import Customize from './Customize.component';
 
 function Grid() {
+    const [check,setCheck]=useState(false);
+    
     return (
         <section className="bg-transparent">
+            {check?(<Customize/>):(<></>)}
             <div className="container px-6 py-10 mx-auto">
                 <span className="relative lg:max-w-lg justify-center">
                     <h1 className="text-2xl font-semibold text-gray-950 lg:text-3xl">
@@ -17,8 +21,8 @@ function Grid() {
                     </p>
                 </span>
 
-                <div className="grid grid-cols-2 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 h-96 lg:grid-cols-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
-                    {category.map(({ id, name, path }) => (
+                <div className="grid grid-cols-2 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 h-96 lg:grid-cols-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent" onClick={()=>setCheck(!check)}>
+                    {categories.map(({ id, name, path }) => (
                         <div key={id} className="w-full">
                             <Card name={name} path={path} />
                         </div>

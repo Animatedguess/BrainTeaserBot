@@ -53,7 +53,7 @@ function SignUpForm({ setIsAuthenticated }) {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/v1/users/register', {
+      const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/register', {
         method: 'POST',
         body: data,
       });

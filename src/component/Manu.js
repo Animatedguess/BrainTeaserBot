@@ -14,7 +14,7 @@ function Manu({ onClick }) {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch('http://localhost:4000/api/v1/users/current-user', {
+                const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/current-user', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

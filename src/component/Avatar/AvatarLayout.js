@@ -28,7 +28,7 @@ function AvatarLayout({ visible, setVisible }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/v1/users/current-user', {
+        const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/current-user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function AvatarLayout({ visible, setVisible }) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/v2/users/logout', {
+      const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v2/users/logout', {
         method: 'POST', // Make sure it's a POST request
         headers: {
           'Content-Type': 'application/json',

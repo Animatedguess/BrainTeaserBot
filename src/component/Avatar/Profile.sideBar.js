@@ -24,7 +24,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/v1/users/current-user', {
+        const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/current-user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const Profile = () => {
       // Check if user is updating profile details
       if (isEditable) {
         // Update firstName, lastName, and email
-        const response = await fetch('http://localhost:4000/api/v1/users/update-account', {
+        const response = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/update-account', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const Profile = () => {
           const formData = new FormData();
           formData.append('avatar', profile.avatar);
 
-          const avatarResponse = await fetch('http://localhost:4000/api/v1/users/avatar', {
+          const avatarResponse = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/avatar', {
             method: 'PATCH',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -118,7 +118,7 @@ const Profile = () => {
       // Check if user is updating password
       if (isPasswordReset) {
         // If newPassword and oldPassword are provided, change the password
-        const passwordResponse = await fetch('http://localhost:4000/api/v1/users/change-password', {
+        const passwordResponse = await fetch('https://backend-brainteaserbot.onrender.com/api/v1/users/change-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 

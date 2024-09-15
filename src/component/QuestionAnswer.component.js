@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Commet } from 'react-loading-indicators'; // Assuming you have this library installed
 import { categories } from '../Data/categoryData';
 import { openTriviaApi } from '../Data/openTriviaApi';
-import Congratulation from '../component/Congratulation.component'; // Import Congratulation component
+import Congratulation from './Congratulation.component';
 
 function QuestionAnswer() {
     const { category, difficulty, type } = useParams();
@@ -11,8 +12,8 @@ function QuestionAnswer() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectedAnswer, setSelectedAnswer] = useState('');
-    const [correctAnswersCount, setCorrectAnswersCount] = useState(0); // Track correct answers
-    const [quizFinished, setQuizFinished] = useState(false); // Track if the quiz is finished
+    const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+    const [quizFinished, setQuizFinished] = useState(false);
 
     useEffect(() => {
         const selectedCategory = categories.find(cat => cat.name.toLowerCase() === category.toLowerCase());
@@ -27,11 +28,11 @@ function QuestionAnswer() {
                     setError(null);
 
                     const response = await openTriviaApi(selectedCategory.id, difficulty, type, signal);
-                    console.log('API response:', response);
 
                     if (response && response.results && response.results.length > 0) {
                         setQuestions(response.results);
                         setCurrentQuestionIndex(0);
+                        setCorrectAnswersCount(0); // Reset correct answers count
                     } else {
                         setError('No questions found.');
                     }
@@ -40,7 +41,6 @@ function QuestionAnswer() {
                         console.log('Fetch aborted');
                     } else {
                         setError('Error fetching data');
-                        console.error("Error fetching data:", err);
                     }
                 } finally {
                     setLoading(false);
@@ -58,8 +58,20 @@ function QuestionAnswer() {
         }
     }, [category, difficulty, type]);
 
+    // Reset the quiz state
+    const restartQuiz = () => {
+        setQuizFinished(false); // Mark quiz as not finished
+        setCurrentQuestionIndex(0); // Reset the current question index
+        setCorrectAnswersCount(0); // Reset correct answers count
+        setSelectedAnswer(''); // Reset selected answer
+    };
+
     if (loading) {
-        return <div className="text-center">Loading questions...</div>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <Commet color="#1e909e" size="large" text="Loading" textColor="#1e909e" />
+            </div>
+        );
     }
 
     if (error) {
@@ -73,16 +85,15 @@ function QuestionAnswer() {
     const currentQuestion = questions[currentQuestionIndex];
 
     const handleNextQuestion = () => {
-        // Check if the selected answer is correct
         if (selectedAnswer === currentQuestion.correct_answer) {
             setCorrectAnswersCount(prevCount => prevCount + 1);
         }
 
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-            setSelectedAnswer(''); // Reset selected answer
+            setSelectedAnswer('');
         } else {
-            setQuizFinished(true); // Quiz finished
+            setQuizFinished(true);
         }
     };
 
@@ -90,8 +101,7 @@ function QuestionAnswer() {
         setSelectedAnswer(answer);
     };
 
-    const shuffledAnswers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer]
-        .sort(() => Math.random() - 0.5);
+    const shuffledAnswers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer].sort(() => Math.random() - 0.5);
 
     if (quizFinished) {
         return (
@@ -99,8 +109,9 @@ function QuestionAnswer() {
                 correctAnswers={correctAnswersCount} 
                 totalQuestions={questions.length} 
                 category={category} 
+                onPlayAgain={restartQuiz} // Pass restart function
             />
-        ); // Render Congratulation component when quiz is finished
+        );
     }
 
     return (

@@ -1,6 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function LoginFrom() {
+function LoginForm({ setIsAuthenticated }) {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:4000/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Sends form data as JSON
+      });
+
+      const result = await response.json();
+      
+
+      console.log("Response:", response.ok);
+      console.log("Result:", result.data.accessToken);
+
+      if (response.ok) {
+        setErrorMessage('');
+        setIsAuthenticated(true); // Update isAuthenticated to true
+        localStorage.setItem('authToken', result.data.accessToken);
+        setTimeout(() => {
+          navigate('/'); // Redirect to the homepage after 2 seconds
+        }, 1000);
+      } else {
+        setErrorMessage(result.message || 'Something went wrong!');
+      }
+    } catch (error) {
+      setErrorMessage(`Login failed. Please try again later.`);
+    }
+  };
+
   return (
     <section className="relative flex flex-wrap-reverse lg:h-screen lg:items-center">
       <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -12,7 +62,7 @@ function LoginFrom() {
           </p>
         </div>
 
-        <form action="#" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
           <div>
             <label htmlFor="email" className="sr-only">
               Email
@@ -21,8 +71,12 @@ function LoginFrom() {
             <div className="relative">
               <input
                 type="email"
+                id="email"
+                name="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
+                value={formData.email}
+                onChange={handleInputChange}
               />
 
               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -52,8 +106,12 @@ function LoginFrom() {
             <div className="relative">
               <input
                 type="password"
+                id="password"
+                name="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
+                value={formData.password}
+                onChange={handleInputChange}
               />
 
               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -81,10 +139,16 @@ function LoginFrom() {
             </div>
           </div>
 
+          {errorMessage && (
+            <div className="text-red-500 text-sm">
+              {errorMessage}
+            </div>
+          )}
+
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               No account?
-              <a className="underline" href="#">
+              <a className="underline" href="/signup">
                 Sign up
               </a>
             </p>
@@ -110,4 +174,4 @@ function LoginFrom() {
   );
 }
 
-export default LoginFrom;
+export default LoginForm;

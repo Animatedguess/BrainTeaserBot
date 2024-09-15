@@ -89,7 +89,7 @@ const ChatApp = ({ initialMessages = [] }) => {
   };
 
   return (
-    <div className="flex flex-col bg-opacity-45 h-96 bg-slate-50 max-w-screen-md mx-auto border border-gray-300 rounded-lg shadow-lg">
+    <div className="flex flex-col bg-opacity-45 h-[600px] bg-slate-50 max-w-screen-md mx-auto border border-gray-300 rounded-lg shadow-lg">
       <ChatWindow messages={messages} />
       <ChatInput onSendMessage={handleSendMessage} bothCall={bothCall} />
     </div>

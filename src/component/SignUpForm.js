@@ -89,7 +89,7 @@ function SignUpForm({ setIsAuthenticated }) {
           />
           <div className="hidden lg:relative lg:block lg:p-8">
             <h2 className="mt-6 text-2xl font-bold text-sign-color sm:text-3xl md:text-4xl">
-              Welcome to Squid
+              Welcome to BrainTeaserBot
             </h2>
             <p className="mt-4 text-md leading-relaxed text-white/90">
               Join us today and unlock endless possibilities—create your account in just a few steps.
@@ -101,7 +101,7 @@ function SignUpForm({ setIsAuthenticated }) {
           <div className="max-w-lg lg:max-w-3xl w-full">
             <div className="relative block lg:hidden text-center mb-6">
               <h1 className="text-2xl sm:text-3xl font-bold text-sign-color">
-                Welcome to Squid
+                Welcome to BrainTeaserBot
               </h1>
               <p className="mt-2 leading-relaxed text-gray-500 text-md">
                 Join us today and unlock endless possibilities.

@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function SignUpForm({ setIsAuthenticated }) {
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -78,7 +81,7 @@ function SignUpForm({ setIsAuthenticated }) {
   return (
     <section className="bg-white h-screen overflow-scroll scrollbar-none">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
-        <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
+        <section className="relative flex h-32 sm:h-40 md:h-48 lg:h-full items-end bg-gray-900 lg:col-span-5 xl:col-span-6">
           <img
             alt=""
             src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?resize=1000x750&vertical=center"
@@ -89,23 +92,23 @@ function SignUpForm({ setIsAuthenticated }) {
               Welcome to Squid
             </h2>
             <p className="mt-4 text-md leading-relaxed text-white/90">
-              Welcome! Join us today and unlock endless possibilities—create your account in just a few easy steps.
+              Join us today and unlock endless possibilities—create your account in just a few steps.
             </p>
           </div>
         </section>
 
-        <main className="flex items-center justify-center px-8 py-2 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
-            <div className="relative block lg:hidden">
-              <h1 className="text-3xl font-bold text-sign-color sm:text-3xl md:text-4xl">
+        <main className="flex items-center justify-center px-4 py-4 sm:px-10 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <div className="max-w-lg lg:max-w-3xl w-full">
+            <div className="relative block lg:hidden text-center mb-6">
+              <h1 className="text-2xl sm:text-3xl font-bold text-sign-color">
                 Welcome to Squid
               </h1>
-              <p className="mt-1 leading-relaxed text-gray-500 text-md">
-                Welcome! Join us today and unlock endless possibilities—create your account in just a few easy steps.
+              <p className="mt-2 leading-relaxed text-gray-500 text-md">
+                Join us today and unlock endless possibilities.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-2 grid grid-cols-6 gap-6">
+            <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-6 gap-y-4 gap-x-4">
               {/* Form Inputs */}
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
@@ -115,7 +118,7 @@ function SignUpForm({ setIsAuthenticated }) {
                   type="text"
                   id="FirstName"
                   name="firstName"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  className="mt-1 w-full h-10 pl-2 rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
                   value={formData.firstName}
                   onChange={handleInputChange}
                 />
@@ -129,7 +132,7 @@ function SignUpForm({ setIsAuthenticated }) {
                   type="text"
                   id="LastName"
                   name="lastName"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  className="mt-1 w-full h-10 pl-2 rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
                   value={formData.lastName}
                   onChange={handleInputChange}
                 />
@@ -143,7 +146,7 @@ function SignUpForm({ setIsAuthenticated }) {
                   type="email"
                   id="Email"
                   name="email"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  className="mt-1 w-full h-10 pl-2 rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
                   value={formData.email}
                   onChange={handleInputChange}
                 />
@@ -153,39 +156,57 @@ function SignUpForm({ setIsAuthenticated }) {
                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
-                <input
-                  type="password"
-                  id="Password"
-                  name="password"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="Password"
+                    name="password"
+                    className="mt-1 w-full h-10 pl-2 pr-10 rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center px-2"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">
                   Confirm Password
                 </label>
-                <input
-                  type="password"
-                  id="PasswordConfirmation"
-                  name="confirmPassword"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                />
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="PasswordConfirmation"
+                    name="confirmPassword"
+                    className="mt-1 w-full h-10 pl-2 pr-10 rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center px-2"
+                  >
+                    {showConfirmPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
               </div>
 
               {/* Error and Success Messages */}
               {errorMessage && (
-                <div className="col-span-6 text-red-500 text-sm">
+                <div className="col-span-6 text-center text-red-500 text-sm">
                   {errorMessage}
                 </div>
               )}
 
               {successMessage && (
-                <div className="col-span-6 text-green-500 text-sm">
+                <div className="col-span-6 text-center text-green-500 text-sm">
                   {successMessage}
                 </div>
               )}
@@ -200,11 +221,11 @@ function SignUpForm({ setIsAuthenticated }) {
                   id="Avatar"
                   name="avatar"
                   accept="image/*"
-                  className="mt-1 w-full h-8 pl-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  className="mt-1 w-full rounded-md border-gray-300 bg-white text-sm shadow-md focus:border-blue-500 focus:ring-blue-500 focus:shadow-lg"
                   onChange={handleAvatarChange}
                 />
                 {avatarPreview && (
-                  <div className="mt-4">
+                  <div className="mt-4 flex justify-center">
                     <img
                       src={avatarPreview}
                       alt="Avatar Preview"
@@ -217,12 +238,12 @@ function SignUpForm({ setIsAuthenticated }) {
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button
                   type="submit"
-                  className="inline-block shrink-0 rounded-md border border-blue-600 bg-login-color px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-login-color focus:outline-none focus:ring active:text-blue-500"
+                  className="inline-block w-full sm:w-auto rounded-md border border-blue-600 bg-login-color px-6 py-2 text-sm font-medium text-white transition duration-300 hover:bg-transparent hover:text-login-color focus:outline-none focus:ring active:text-blue-500"
                 >
                   Create an account
                 </button>
 
-                <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                <p className="mt-4 sm:mt-0 text-center text-sm text-gray-500">
                   Already have an account?{' '}
                   <Link to="/login" className="text-gray-700 underline">Log in</Link>.
                 </p>

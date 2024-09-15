@@ -67,6 +67,7 @@ function SignUpForm({ setIsAuthenticated }) {
         setSuccessMessage('Account created successfully!');
         setErrorMessage('');
         setIsAuthenticated(true); // Mark the user as authenticated
+        localStorage.setItem('authToken', result.message);
         setTimeout(() => {
           navigate('/'); // Redirect to homepage
         }, 1000);

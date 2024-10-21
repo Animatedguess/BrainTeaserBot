@@ -48,36 +48,10 @@ Ensure you have the following installed:
 3. Install dependencies for the client and server:
 
    ```bash
-   # Install server dependencies
-   cd server
+   # Install dependencies
    npm install
 
-   # Install client dependencies
-   cd ../client
-   npm install
-   ```
-
-4. Create a `.env` file in the `server` directory and add your environment variables:
-
-   ```env
-   PORT=5000
-   MONGODB_URI=your_mongodb_connection_string
-   GEMINI_AI_KEY=your_gemini_ai_api_key
-   ```
-
-5. Start the application:
-
-   ```bash
-   # Run the server
-   cd server
-   npm start
-
-   # Run the client
-   cd ../client
-   npm start
-   ```
-
-6. Open your browser and go to:
+4. Open your browser and go to:
 
    ```
    http://localhost:3000

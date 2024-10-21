@@ -28,7 +28,7 @@ Follow these instructions to set up the project locally.
 Ensure you have the following installed:
 
 - Node.js (v14+)
-- npm or yarn
+- npm
 - MongoDB
 
 ### Installation
@@ -64,7 +64,7 @@ brainteaserbot/
 │
 ├── public/             # Public files
 ├── src/                # Source files   
-|── ...                 # React components, styles, and more  
+├── ...                 # React components, styles, and more  
 │
 └── README.md
 ```

@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# BrainTeaserBot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BrainTeaserBot is an AI-powered quiz trivia website that offers an engaging and interactive experience for quiz enthusiasts. Built using the MERN stack, it leverages Gemini AI and the Open Trivia DB API to deliver diverse and challenging trivia questions across various categories. 
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **AI-Powered Quiz Search**: Get personalized quiz recommendations using the Gemini AI, offering an intelligent and customized quiz experience.
+- **Wide Range of Categories**: Choose from different quiz categories ranging from science, history, sports, and more.
+- **Multiple Difficulty Levels**: Select quizzes based on your preferred difficulty level - Easy, Medium, or Hard.
+- **Responsive Design**: Fully responsive design to ensure a seamless experience across all devices.
+- **Real-Time Updates**: Enjoy real-time loading of quizzes and score updates for a smooth gameplay experience.
 
-### `npm start`
+## 🛠️ Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Front-end**: React.js, JavaScript, Tailwind CSS
+- **Back-end**: Node.js, Express.js
+- **Database**: MongoDB
+- **APIs**: 
+  - Open Trivia DB API for fetching trivia questions
+  - Gemini AI for quiz search and recommendation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Getting Started
 
-### `npm test`
+Follow these instructions to set up the project locally.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+Ensure you have the following installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (v14+)
+- npm or yarn
+- MongoDB
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
 
-### `npm run eject`
+   ```bash
+   git clone https://github.com/your-username/brainteaserbot.git
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the project directory:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   cd brainteaserbot
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install dependencies for the client and server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   # Install server dependencies
+   cd server
+   npm install
 
-## Learn More
+   # Install client dependencies
+   cd ../client
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Create a `.env` file in the `server` directory and add your environment variables:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```env
+   PORT=5000
+   MONGODB_URI=your_mongodb_connection_string
+   GEMINI_AI_KEY=your_gemini_ai_api_key
+   ```
 
-### Code Splitting
+5. Start the application:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   # Run the server
+   cd server
+   npm start
 
-### Analyzing the Bundle Size
+   # Run the client
+   cd ../client
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+6. Open your browser and go to:
 
-### Making a Progressive Web App
+   ```
+   http://localhost:3000
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📂 Project Structure
 
-### Advanced Configuration
+```bash
+brainteaserbot/
+│
+├── public/             # Public files
+├── src/                # Source files   
+|── ...                 # React components, styles, and more  
+│
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🎨 Screenshots
 
-### Deployment
+Include screenshots of the website here to showcase the UI and features.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## 📧 Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have any questions or feedback, please reach out:
+
+- **Kailash Agarwal** - [Portfolio](https://kailash-agarwal-portfolio.netlify.app/)
+- **Email**: kailashjobmail007@gmail.com

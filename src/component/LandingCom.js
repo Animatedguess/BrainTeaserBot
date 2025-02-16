@@ -33,7 +33,6 @@ function LandingCom() {
 
     useEffect(() => {
         if (context.length !== 0) setFetched(true);
-        console.log(context);
     }, [context]);
 
     const handleChange = (event) => {

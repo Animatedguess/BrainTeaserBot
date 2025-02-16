@@ -27,7 +27,6 @@ function Manu({ onClick }) {
                 }
 
                 const data = await response.json();
-                console.log(data)
                 setUserAvatar(data.data.avatar); // Assuming response has `avatarUrl`
                 setUserName(data.data.firstName+" "+data.data.lastName);        // Assuming response has `name`
             } catch (error) {

@@ -73,7 +73,6 @@ const ChatApp = ({ initialMessages = [] }) => {
     try {
       const response = await geminiAi(input);
       setContext(response);
-      console.log(context);
       setFetched(true); // Trigger the useEffect to add the AI response
     } catch (error) {
       console.error("Error fetching data:", error);
